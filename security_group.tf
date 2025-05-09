@@ -9,7 +9,7 @@ resource "aws_security_group" "jump-host_sg" {
     description = "Allow SSH to jump server port 22"
     from_port   = 22
     to_port     = 22
-    protocol    = "ssh"
+    protocol    = "tcp"
     cidr_blocks = ["50.101.215.59/32"]
   }
 
@@ -36,7 +36,7 @@ resource "aws_security_group" "tribalchief_private_instance_sg" {
     description     = "Allow SSH access from jump host"
     from_port       = 22
     to_port         = 22
-    protocol        = "ssh"
+    protocol        = "tcp"
     security_groups = [aws_security_group.jump-host_sg.id]
   }
   ingress {
